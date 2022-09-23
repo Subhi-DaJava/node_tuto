@@ -1,0 +1,53 @@
+// 19092022 Call-Back, when a function down then run the Call-Back, async function
+const { readFile, writeFile } = require('fs');
+
+console.log('start');
+
+readFile('./content/first.txt', 'utf8',(err, result) => {
+    if (err) {
+        console.log(err);
+        return ;
+    }
+    //console.log(result); // Hello this is the first text file.
+    const first = result;
+    readFile('./content/second.txt', 'utf8', (err, result) => {
+        if (err) {
+            console.log(err);
+            return ;
+        }
+        //console.log(result); // Hello this is the first text file.
+        const second = result;
+        writeFile('./content/result-async.txt', 
+        `Here is the result : ${first} ${second}`, (err, result) => {
+            if(err) {
+                console.log(err);
+                return ;
+            }
+
+            console.log(result); // nothing to print, because this is the writting function ,undefined 
+            console.log('done with this task');
+        });
+    });
+});
+console.log('starting next task');
+
+/*
+start
+starting next task
+undefined
+done with this task
+*/
+
+
+// if we dont provie 'utf8' in readFile('./xx', 'utf8',()=>) we get the error :
+// // <Buffer 48 65 6c 6c 6f 20 74 68 69 73 20 69 73 20 74 68 65 20 66 69 72 73 74 20 74 65 78 74 20 66 69 6c 65 2e>
+
+// if we could not found any file, we get this error in console
+//
+
+/*'[Error: ENOENT: no such file or directory, open {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'D:\NodeJS_Tutorial\\NodeJS-Tuto\\content\\first.tx'
+  } */

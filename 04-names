@@ -1,0 +1,9 @@
+// 18092022
+// share
+const subhi = 'subhi'
+const yar = 'yar'
+// local
+const sectet = 'TOP SECRET'
+
+//console.log(module)
+module.exports = {subhi, yar} //object
