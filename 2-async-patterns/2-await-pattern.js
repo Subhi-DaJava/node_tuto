@@ -1,6 +1,6 @@
 // 25/09/2022 
 // Promise await 
-const { readFile, writeFile } = require('fs').promises; // this is readable and easyier 
+const { readFile, writeFile } = require('fs').promises;
 
 
 
@@ -8,7 +8,6 @@ const start = async() => {
     try {
         const first = await readFile('./content/first.txt', 'utf-8');
         const second = await readFile('./content/second.txt', 'utf-8');
-        
         await writeFile('./content/result-mind-grenade-promises.txt', 
         `THIS IS AWESOME : ${first}  ${second}`, {flag: 'a'}); // repeat the content
         console.log(first, second);
